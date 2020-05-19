@@ -12,18 +12,24 @@
         const params = `?url=${ encodeURIComponent($jq('input[name=short_an_url]').val()) }`
         const route = action + params;
         $jq.get( route, function(data) {
-            $jq('#loadingModal').modal('hide');
-            $jq('input[name=short_an_url]').val('');
-            $jq('input[name=shorten_url]').val(data.result_data.shorten_url);
-            $jq('#real_url').html(`Real URL : ${data.result_data.real_url}`);
-            $jq('#hrefResult').click();
-        }).fail(function (jqXHR, textStatus, error) {
-            $jq('#loadingModal').modal('hide');
             setTimeout(() => {
-                $jq('#responseModalTitle').html(error);
-                $jq('#responseModalText').html(jqXHR.responseJSON.message);
-                $jq('#responseModal').modal('show');
-            }, 300);
+                $jq('#loadingModal').modal('hide');
+                setTimeout(() => {
+                    $jq('input[name=short_an_url]').val('');
+                    $jq('input[name=shorten_url]').val(data.result_data.shorten_url);
+                    $jq('#real_url').html(`Real URL : ${data.result_data.real_url}`);
+                    $jq('#hrefResult').click();
+                }, 500);
+            }, 500);
+        }).fail(function (jqXHR, textStatus, error) {
+            setTimeout(() => {
+                $jq('#loadingModal').modal('hide');
+                setTimeout(() => {
+                    $jq('#responseModalTitle').html(error);
+                    $jq('#responseModalText').html(jqXHR.responseJSON.message);
+                    $jq('#responseModal').modal('show');
+                }, 500);
+            }, 500);
         })
     });
 
@@ -78,3 +84,26 @@
     });
   });
 })(jQuery)
+
+function copy() {
+    /* Get the text field */
+    var copyText = document.getElementById("shorten_url");
+
+    /* Select the text field */
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+    /* Copy the text inside the text field */
+    document.execCommand("copy");
+
+    /* Alert the copied text */
+    $("#button-copy").html("COPIED");
+    $("#button-copy").removeClass("btn-primary");
+    $("#button-copy").addClass("btn-success");
+
+    setTimeout(() => {
+        $("#button-copy").html("COPY");
+        $("#button-copy").removeClass("btn-success");
+        $("#button-copy").addClass("btn-primary");
+    }, 5000);
+}
