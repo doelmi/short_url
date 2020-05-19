@@ -12,5 +12,8 @@
 */
 
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+    return view('home');
 });
+
+$router->get('/short', ['as' => 'short', 'uses' => 'UrlController@short']);
+$router->get('/{url}', ['as' => 'url', 'uses' => 'UrlController@redirect']);
