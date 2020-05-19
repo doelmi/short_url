@@ -25,7 +25,7 @@
             setTimeout(() => {
                 $jq('#loadingModal').modal('hide');
                 setTimeout(() => {
-                    $jq('#responseModalTitle').html(error);
+                    $jq('#responseModalTitle').html(jqXHR.statusText + ' - ' + jqXHR.status);
                     $jq('#responseModalText').html(jqXHR.responseJSON.message);
                     $jq('#responseModal').modal('show');
                 }, 500);

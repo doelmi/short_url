@@ -74,7 +74,7 @@
                     <div class="row justify-content-center">
                         <div class="col-xs-12 col-md-7">
                             <div class="input-group input-group-lg mb-3 px-5">
-                                <input type="text" class="form-control" id="shorten_url" name="shorten_url" readonly placeholder="Shorten URL" aria-label="Shorten URL" aria-describedby="button-copy">
+                                <input type="text" class="form-control bg-white" id="shorten_url" name="shorten_url" readonly placeholder="Shorten URL" aria-label="Shorten URL" aria-describedby="button-copy">
                                 <div class="input-group-append">
                                     <a href="javascript:void(0)">
                                         <button class="btn btn-primary btn-xl" type="button" id="button-copy" onclick="copy()">COPY</button>
