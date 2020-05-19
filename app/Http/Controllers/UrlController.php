@@ -73,14 +73,14 @@ class UrlController extends Controller
             return $this->buildResponse(true, 200, 'Short URL success', $response);
         } catch (\Throwable $th) {
             DB::rollback();
-            return $this->buildResponse(false, $th->getCode() != 0 ? $th->getCode() : 500, $th->getMessage());
+            return $this->buildResponse(false, $th->getCode(), $th->getMessage());
         }
     }
 
     public function redirect(Request $request, $url)
     {
         try {
-            $url = Url::where('shorten_url', $url)->first();
+            $url = Url::whereRaw('BINARY `shorten_url` = ?', [ $url ])->first();
             if (!$url) {
                 throw new \Exception("Url not found", 404);
             }
@@ -88,7 +88,7 @@ class UrlController extends Controller
             $url->save();
             return redirect()->to($url->real_url);
         } catch (\Throwable $th) {
-            return $this->buildResponse(false, 500, $th->getMessage());
+            return $this->buildResponse(false, $th->getCode(), $th->getMessage());
         }
 
     }
@@ -98,7 +98,7 @@ class UrlController extends Controller
         $application_id = $lastUrl ? $lastUrl->id : 0;
         do {
             $randomCode = $this->getToken($length, $application_id);
-            $shorten_url = Url::where('shorten_url', $randomCode)->get();
+            $shorten_url = Url::whereRaw('BINARY `shorten_url` = ?', [ $randomCode ])->get();
             $application_id += 1;
         } while(!$shorten_url->isEmpty());
         return $randomCode;

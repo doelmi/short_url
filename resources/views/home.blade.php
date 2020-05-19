@@ -70,7 +70,7 @@
                         <h2>Result</h2>
                         <p>Shorten URL will be displayed here.</p>
                     </div>
-                    <p class="lead" id="real_url">Real URL : {url}</p>
+                    <p class="lead" id="real_url" style="overflow: auto;white-space: nowrap;padding: 0.5rem;">{url}</p>
                     <div class="row justify-content-center">
                         <div class="col-xs-12 col-md-7">
                             <div class="input-group input-group-lg mb-3 px-5">

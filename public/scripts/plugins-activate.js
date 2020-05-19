@@ -17,7 +17,7 @@
                 setTimeout(() => {
                     $jq('input[name=short_an_url]').val('');
                     $jq('input[name=shorten_url]').val(data.result_data.shorten_url);
-                    $jq('#real_url').html(`Real URL : ${data.result_data.real_url}`);
+                    $jq('#real_url').html(data.result_data.real_url);
                     $jq('#hrefResult').click();
                 }, 500);
             }, 500);

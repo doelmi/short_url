@@ -9,6 +9,7 @@ class Controller extends BaseController
 {
     public function buildResponse($status, $code = 200, $message, $resultdata = null)
     {
+        $code = $code != 0 ? $code : 500;
         $response = [
             'status' => $status ? 'success' : 'failed',
             'code' => $code,
