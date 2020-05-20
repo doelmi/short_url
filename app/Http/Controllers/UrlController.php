@@ -33,6 +33,12 @@ class UrlController extends Controller
                 throw new \Exception("Not a valid `url`", 400);
             }
 
+            if ($request->has('token')) {
+                if (!is_string($request->token) || (preg_match('/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/', $request->token) !== 1)) {
+                    throw new \Exception("Not a valid `token`. Should be structured as UUIDv4.", 400);
+                }
+            }
+
             $rUrl = $this->getDomainFromUrl($request->url);
             $tUrl = $this->getDomainFromUrl(url());
 

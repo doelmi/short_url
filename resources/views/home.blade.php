@@ -94,57 +94,82 @@
                 <p>Free using API Short URL S.DOELMI.ID</p>
             </div>
             <div class="row">
-                <div class="col-sm-12 col-md-8 col-lg-8">
+                <div class="col-sm-12 col-md-7 col-lg-7">
                     <div class="contact-wrapper">
-                        <div class="address-block border-bottom">
-                            <h3 class="add-title">Setting</h3>
-                            <div class="c-detail">
-                                <span class="c-icon"><i class="fa fa-gear" aria-hidden="true"></i></span><span class="c-info">Method: GET</span>
-                            </div>
-                            <div class="c-detail">
-                                <span class="c-icon"><i class="fa fa-link" aria-hidden="true"></i></span><span class="c-info">Endpoint: {{ route('short') }}</span>
-                            </div>
-                            <div class="c-detail">
-                                <span class="c-icon"><i class="fa fa-file" aria-hidden="true"></i></span><span class="c-info">Params: url</span>
-                            </div>
-                            <div class="c-detail">
-                                <span class="c-info text-left ml-0 text-danger">Note! If you are using PHP please use urlencode() function. If other language, please use urlencode() function look a like.</span>
-                            </div>
-                        </div>
                         <div class="address-block">
-                            <h3 class="add-title">Example</h3>
-                            <div class="c-detail">
-                                <span class="c-icon"><i class="fa fa-file" aria-hidden="true"></i></span><span class="c-info">Url: https://www.facebook.com/doelmi</span>
-                            </div>
-                            <div class="c-detail">
-                                <span class="c-icon"><i class="fa fa-external-link" aria-hidden="true"></i></span><span class="c-info">Url Encoded: https%3A%2F%2Fwww.facebook.com%2Fdoelmi</span>
-                            </div>
-                            <div class="c-detail">
-                                <span class="c-icon"><i class="fa fa-link" aria-hidden="true"></i></span><span class="c-info">Endpoint: {{ route('short') }}?url=https%3A%2F%2Fwww.facebook.com%2Fdoelmi</span>
+                            <h5 class="mb-4">Setting</h5>
+                            <div class="row">
+                                <div class="col-12 mb-4">
+                                    <h6>URL</h6>
+                                    <hr>
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <span class="text-success m-0">GET</span> <span class="text-dark m-0">{{ route('short') }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 mb-4">
+                                    <h6>Parameters</h6>
+                                    <hr>
+                                    <div class="row mb-2">
+                                        <div class="col-xs-12 col-md-3">
+                                            <span class="m-0 font-weight-bold">url</span>
+                                        </div>
+                                        <div class="col-xs-12 col-md-9">
+                                            <p>
+                                                <span class="text-danger m-0" style="line-height: 0%;">Required</span>
+                                                <span class="m-0 text-justify" style="line-height: 0%;">
+                                                    The URL will be shorten. If you are using PHP please use urlencode() function. If JavaScript use encodeURIComponent(). If other language, please use function look a like.
+                                                </span>
+                                            </p>
+                                            <p>
+                                                <span class="badge badge-info text-white m-0" style="font-size: 11px; line-height: 100%;">Example</span>
+                                                <span class="m-0 text-dark" style="line-height: 0%;">{{$urlencoded}}</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-xs-12 col-md-3">
+                                            <span class="m-0 font-weight-bold">token</span>
+                                        </div>
+                                        <div class="col-xs-12 col-md-9">
+                                            <p>
+                                                <span class="text-warning m-0" style="line-height: 0%;">Optional</span>
+                                                <span class="m-0 text-justify" style="line-height: 0%;">Unique identifier. Structured as UUIDv4. You can generate UUIDv4 via <a href="{{$generatorUrl}}" target="_blank">UUID Generator</a>. (In future) You can get report by this token.</span>
+                                            </p>
+                                            <p>
+                                                <span class="badge badge-info text-white m-0" style="font-size: 11px; line-height: 100%;">Example</span>
+                                                <span class="m-0 text-dark" style="line-height: 0%;">{{$uuidv4}}</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-4 col-lg-4">
-                    <div class="form-wrap">
-                        <h5>Response Example</h5>
-                        <pre>
-                        <code>
-{
-    status: "success",
-    code: 200,
-    message: "Short URL success",
-    response_time: "2020-05-19T03:49:06.000000Z",
-    result_data: {
-        id: 2,
-        real_url: "https://www.facebook.com/doelmi",
-        shorten_url: "https://s.doelmi.id/f6pBk",
-        click_counter: 1,
-        shorten_counter: 7
-    }
-}
-                        </code>
-                      </pre>
+                <div class="col-sm-12 col-md-5 col-lg-5">
+                    <div class="contact-wrapper m-0 p-0" style="border: 0;">
+                        <div class="address-block">
+                            <h5 class="mb-4">Example</h5>
+                            <div class="mb-4">
+                                <h6>Example URL</h6>
+                                <hr>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <span class="text-success m-0">GET</span> <span class="text-dark m-0">{{ route('short') }}?url={{$urlencoded}}&token={{$uuidv4}}</span>
+                                    </div>
+                                    <div class="card-body">
+                                        <span class="m-0 text-dark">Click <a href="{{ route('short') }}?url={{$urlencoded}}&token={{$uuidv4}}" target="_blank" class="badge badge-dark m-0">here</a> to open (new tab)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <h6>JSON Structure Response</h6>
+                                <hr>
+                                <iframe style="border: 0; width: 100%; height: 268px;" src="https://kode.rumahzen.my.id/kode.php?kunci=bd0aee0db9b0ce04192eb915f0138ee7" title="Response Example"></iframe>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

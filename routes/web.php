@@ -16,7 +16,10 @@ header('Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE');
 header('Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Authorization');
 
 $router->get('/', function () use ($router) {
-    return view('home');
+    $data['uuidv4'] = '61422a4e-f8b9-40c4-b058-94598eb5e30f';
+    $data['urlencoded'] = 'https%3A%2F%2Fwww.facebook.com%2Fdoelmi';
+    $data['generatorUrl'] = 'https://www.uuidgenerator.net/version4';
+    return view('home', $data);
 });
 
 $router->get('/short', ['as' => 'short', 'uses' => 'UrlController@short']);
