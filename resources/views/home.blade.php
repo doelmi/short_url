@@ -177,6 +177,16 @@
     </section>
     <footer class="footer text-center">
         <div class="container">
+            <div class="mb-3">
+                <a class="btn btn-primary mr-3" target="_blank" href="https://www.paypal.me/doelmi">
+                    <i class="fa fa-paypal mr-1" aria-hidden="true"></i>
+                    Donate via PayPal
+                </a>
+                <a class="btn btn-primary" target="_blank" href="https://streamlabs.com/doelmi1">
+                    <i class="fa fa-heart mr-1" aria-hidden="true"></i>
+                    Donate via Streamlabs
+                </a>
+            </div>
             <ul class="list-inline">
                 <li class="list-inline-item">
                     <a class="social-link rounded-circle text-white mr-3" target="_blank" href="https://www.facebook.com/doelmi">
@@ -189,7 +199,12 @@
                     </a>
                 </li>
                 <li class="list-inline-item">
-                    <a class="social-link rounded-circle text-white" target="_blank" href="https://www.linkedin.com/in/doelmi">
+                    <a class="social-link rounded-circle text-white mr-3" target="_blank" href="https://www.instagram.com/doelmi">
+                        <i class="fa fa-instagram" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a class="social-link rounded-circle text-white mr-3" target="_blank" href="https://www.linkedin.com/in/doelmi">
                         <i class="fa fa-linkedin" aria-hidden="true"></i>
                     </a>
                 </li>
