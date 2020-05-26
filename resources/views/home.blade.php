@@ -178,13 +178,9 @@
     <footer class="footer text-center">
         <div class="container">
             <div class="mb-3">
-                <a class="btn btn-primary mr-3" target="_blank" href="https://www.paypal.me/doelmi">
-                    <i class="fa fa-paypal mr-1" aria-hidden="true"></i>
-                    Donate via PayPal
-                </a>
-                <a class="btn btn-primary" target="_blank" href="https://streamlabs.com/doelmi1">
+                <a class="btn btn-primary" target="_blank" href="https://tip.doelmi.id">
                     <i class="fa fa-heart mr-1" aria-hidden="true"></i>
-                    Donate via Streamlabs
+                    Donate via D'Tip (My own site)
                 </a>
             </div>
             <ul class="list-inline">
