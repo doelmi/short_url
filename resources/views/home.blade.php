@@ -64,7 +64,7 @@
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <div class="col-sm-12 col-md-4 col-lg-4">
+                    <div class="col-sm-7 col-md-4 col-lg-4">
                         <div class="input-group input-group-sm">
                             <input type="text" class="form-control" name="custom_code" placeholder="Custom Code" autocomplete="off">
                         </div>
