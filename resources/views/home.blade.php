@@ -6,18 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Short URL at S.DOELMI.ID - Super Free URL Shorting and API Support">
     <meta name="author" content="Abdullah Fahmi">
-    <link rel="icon" type="image/png" href="{{ url('images/favicon-32x32.png') }}" sizes="32x32" />
-    <link rel="icon" type="image/png" href="{{ url('images/favicon-16x16.png') }}" sizes="16x16" />
+    <link rel="icon" type="image/png" href="{{ url('images/favicon-32x32.png?v=' . $version) }}" sizes="32x32" />
+    <link rel="icon" type="image/png" href="{{ url('images/favicon-16x16.png?v=' . $version) }}" sizes="16x16" />
     <title>Short URL at S.DOELMI.ID</title>
     <!--stylesheet-->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,900" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="{{ url('styles/styles.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ url('styles/custom-responsive-styles.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ url('styles/styles.css?v=' . $version) }}" rel="stylesheet" type="text/css">
+    <link href="{{ url('styles/custom-responsive-styles.css?v=' . $version) }}" rel="stylesheet" type="text/css">
     <!--scripts-->
-    <script type="text/javascript" src="{{ url('scripts/jquery-3.2.1.min.js') }}"></script>
-    <script type="text/javascript" src="{{ url('scripts/all-plugins.js') }}"></script>
-    <script type="text/javascript" src="{{ url('scripts/plugins-activate.js') }}"></script>
+    <script type="text/javascript" src="{{ url('scripts/jquery-3.2.1.min.js?v=' . $version) }}"></script>
+    <script type="text/javascript" src="{{ url('scripts/all-plugins.js?v=' . $version) }}"></script>
+    <script type="text/javascript" src="{{ url('scripts/plugins-activate.js?v=' . $version) }}"></script>
     <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </head>
 
@@ -233,6 +233,7 @@
                 </li>
             </ul>
             <p class="text-muted small mb-0">Copyright © S.DOELMI.ID 2020</p>
+            <p class="text-muted small mb-0">Version {{$version}}</p>
         </div>
     </footer>
 

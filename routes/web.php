@@ -21,6 +21,7 @@ $router->get('/', function () use ($router) {
     $data['generatorUrl'] = 'https://www.uuidgenerator.net/version4';
     $data['customCode'] = 'myfb';
     $data['urlCodeExample'] = 'https://kode.rumahzen.my.id/kode.php?kunci=45ed7d20de3115bfd7fe25b6d1445768';
+    $data['version'] = '0.1.20200530';
     return view('home', $data);
 });
 
