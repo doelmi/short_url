@@ -19,6 +19,8 @@ $router->get('/', function () use ($router) {
     $data['uuidv4'] = '61422a4e-f8b9-40c4-b058-94598eb5e30f';
     $data['urlencoded'] = 'https%3A%2F%2Fwww.facebook.com%2Fdoelmi';
     $data['generatorUrl'] = 'https://www.uuidgenerator.net/version4';
+    $data['customCode'] = 'myfb';
+    $data['urlCodeExample'] = 'https://kode.rumahzen.my.id/kode.php?kunci=45ed7d20de3115bfd7fe25b6d1445768';
     return view('home', $data);
 });
 

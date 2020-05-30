@@ -9,13 +9,18 @@
             keyboard: false
         });
         const action = $jq(this).attr('action');
-        const params = `?url=${ encodeURIComponent($jq('input[name=short_an_url]').val()) }`
+        let params = `?url=${ encodeURIComponent($jq('input[name=short_an_url]').val()) }&token=${ $jq('input[name=uuidv4]').val() }`
+        const custom_code = $jq('input[name=custom_code]').val()
+        if (custom_code.length > 0) {
+            params += `&custom_code=${custom_code}`
+        }
         const route = action + params;
         $jq.get( route, function(data) {
             setTimeout(() => {
                 $jq('#loadingModal').modal('hide');
                 setTimeout(() => {
                     $jq('input[name=short_an_url]').val('');
+                    $jq('input[name=custom_code]').val('')
                     $jq('input[name=shorten_url]').val(data.result_data.shorten_url);
                     $jq('#real_url').html(data.result_data.real_url);
                     $jq('#hrefResult').click();

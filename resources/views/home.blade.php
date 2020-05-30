@@ -52,10 +52,22 @@
                 <em>Super Free URL Shorting and API Support</em>
             </h3>
             <form action="{{ route('short') }}" class="px-5" id="submitShort">
-                <div class="input-group input-group-lg mb-3 px-5">
-                    <input type="text" class="form-control" name="short_an_url" placeholder="Short an URL" aria-label="Short an URL" aria-describedby="button-short" required autocomplete="off">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary btn-xl" type="submit" id="button-short">SHORT</button>
+                <div class="row justify-content-center mb-3">
+                    <div class="col-sm-12 col-md-10 col-lg-10">
+                        <div class="input-group input-group-lg">
+                            <input type="text" class="form-control" name="short_an_url" placeholder="Short an URL" aria-label="Short an URL" aria-describedby="button-short" required autocomplete="off">
+                            <input type="hidden" name="uuidv4" value="{{$uuidv4}}">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary btn-xl" type="submit" id="button-short">SHORT</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-sm-12 col-md-4 col-lg-4">
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control" name="custom_code" placeholder="Custom Code" autocomplete="off">
+                        </div>
                     </div>
                 </div>
             </form>
@@ -143,6 +155,21 @@
                                             </p>
                                         </div>
                                     </div>
+                                    <div class="row mb-2">
+                                        <div class="col-xs-12 col-md-3">
+                                            <span class="m-0 font-weight-bold">custom_code</span>
+                                        </div>
+                                        <div class="col-xs-12 col-md-9">
+                                            <p>
+                                                <span class="text-warning m-0" style="line-height: 0%;">Optional</span>
+                                                <span class="m-0 text-justify" style="line-height: 0%;">Unique custom string. You can make code as you want. Shorten URL will be {{url($customCode)}}</span>
+                                            </p>
+                                            <p>
+                                                <span class="badge badge-info text-white m-0" style="font-size: 11px; line-height: 100%;">Example</span>
+                                                <span class="m-0 text-dark" style="line-height: 0%;">{{$customCode}}</span>
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -167,7 +194,7 @@
                             <div class="mb-4">
                                 <h6>JSON Structure Response</h6>
                                 <hr>
-                                <iframe style="border: 0; width: 100%; height: 268px;" src="https://kode.rumahzen.my.id/kode.php?kunci=bd0aee0db9b0ce04192eb915f0138ee7" title="Response Example"></iframe>
+                                <iframe style="border: 0; width: 100%; height: 287px;" src="{{$urlCodeExample}}" title="Response Example"></iframe>
                             </div>
                         </div>
                     </div>

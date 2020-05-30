@@ -12,7 +12,7 @@ class Url extends Model
      * @var array
      */
     protected $fillable = [
-        'shorten_url', 'real_url', 'click_counter', 'shorten_counter'
+        'shorten_url', 'real_url', 'click_counter', 'shorten_counter', 'type'
     ];
 
     /**

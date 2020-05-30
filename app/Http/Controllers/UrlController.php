@@ -46,18 +46,43 @@ class UrlController extends Controller
                 throw new \Exception("Can not short an `url` from this domain", 400);
             }
 
-            $url = Url::where('real_url', $request->url)->first();
+            if ($request->has('custom_code')) {
+                if (preg_match('/[^a-z_\-0-9]/i', $request->custom_code)) {
+                    throw new \Exception("The `custom_code` has to be alpha-numeric only", 400);
+                }
+                if (strlen($request->custom_code) > 150) {
+                    throw new \Exception("The `custom_code` length has to be 150 or less", 400);
+                }
+                $url = Url::whereRaw('BINARY `shorten_url` = ?', [ $request->custom_code ])->first();
+                if(!$url) {
+                    $url = new Url();
+                    $url->shorten_url = $request->custom_code;
+                    $url->real_url = $request->url;
+                    $url->click_counter = 0;
+                    $url->shorten_counter = 1;
+                    $url->type = 1;
+                    $url->save();
+                } else if ($url->real_url == $request->url) {
+                    $url->shorten_counter += 1;
+                    $url->save();
+                } else {
+                    throw new \Exception("The `custom_code` has already been taken by other url", 400);
+                }
 
-            if(!$url) {
-                $url = new Url();
-                $url->shorten_url = $this->uniqueRandomString(5);
-                $url->real_url = $request->url;
-                $url->click_counter = 0;
-                $url->shorten_counter = 1;
-                $url->save();
             } else {
-                $url->shorten_counter += 1;
-                $url->save();
+                $url = Url::where('real_url', $request->url)->where('type', 0)->first();
+
+                if(!$url) {
+                    $url = new Url();
+                    $url->shorten_url = $this->uniqueRandomString(3);
+                    $url->real_url = $request->url;
+                    $url->click_counter = 0;
+                    $url->shorten_counter = 1;
+                    $url->save();
+                } else {
+                    $url->shorten_counter += 1;
+                    $url->save();
+                }
             }
 
             $urlsHistory = new UrlsHistory();
@@ -72,8 +97,9 @@ class UrlController extends Controller
                 'id' => $url->id,
                 'real_url' => $url->real_url,
                 'shorten_url' => url($url->shorten_url),
-                'click_counter' => $url->click_counter,
-                'shorten_counter' => $url->shorten_counter
+                'shorten_url_code' => $tUrl . "/$url->shorten_url",
+                'click_counter' => (int) $url->click_counter,
+                'shorten_counter' => (int) $url->shorten_counter
             ];
 
             return $this->buildResponse(true, 200, 'Short URL success', $response);
@@ -99,13 +125,19 @@ class UrlController extends Controller
 
     }
 
-    private function uniqueRandomString($length) {
+    private function uniqueRandomString($length, $threshold = 100) : String {
         $lastUrl = Url::latest()->first();
         $application_id = $lastUrl ? $lastUrl->id : 0;
+        $counter = 0;
         do {
+            if ($counter > $threshold) {
+                $counter = 0;
+                $length += 1;
+            }
             $randomCode = $this->getToken($length, $application_id);
             $shorten_url = Url::whereRaw('BINARY `shorten_url` = ?', [ $randomCode ])->get();
             $application_id += 1;
+            $counter += 1;
         } while(!$shorten_url->isEmpty());
         return $randomCode;
     }
